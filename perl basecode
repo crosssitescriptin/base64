@@ -1,0 +1,28 @@
+use MIME::Base64 qw(encode_base64 decode_base64);
+print "Shitty Base64 tool\n\n";
+BEGIN:
+print "   1 - Encode a string in base64\n";
+print "   2 - Decode a base64 encoded string\n\n";
+print "Choice: ";
+my $choice = <STDIN>;
+if ($choice == "1"){
+    print "Enter string to encode: ";
+    my $string = <STDIN>;
+    chomp $string;
+    my $base64 = encode_base64($string);
+    chomp $base64;
+    print "\nBase64 string: \"" . $base64 . "\"\n";
+    exit;
+}
+if ($choice == "2"){
+    print "Enter base64 string to decode: ";
+    my $string = <STDIN>;
+    chomp $string;
+    my $unencoded = decode_base64($string);
+    chomp $unencoded;
+    print "\nThe unencoded string is \"" . $unencoded . "\"\n";
+}
+if ($choice != "1" and $choice != "2"){
+    print "Incorrect option entered\n\n\n";
+    goto BEGIN;
+}
